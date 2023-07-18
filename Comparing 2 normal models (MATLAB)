@@ -1,0 +1,37 @@
+% Define the parameters for the first normal distribution
+mu1 = 5;          % mean
+sigma1 = 1.5;     % standard deviation
+
+% Generate the first dataset
+data1 = normrnd(mu1, sigma1, [1, 10]);
+
+% Define the parameters for the second normal distribution
+mu2 = 8;          % mean
+sigma2 = 2;       % standard deviation
+
+% Generate the second dataset
+data2 = normrnd(mu2, sigma2, [1, 10]);
+
+% Create a figure and axes for the plot
+figure;
+hold on;
+
+% Plot histograms of the datasets
+histogram(data1, 'Normalization', 'pdf', 'FaceColor', 'blue', 'EdgeColor', 'none');
+histogram(data2, 'Normalization', 'pdf', 'FaceColor', 'red', 'EdgeColor', 'none');
+
+% Overlay the PDF curves of the normal distributions
+x = linspace(min([data1, data2]), max([data1, data2]), 100);
+y1 = normpdf(x, mu1, sigma1);
+y2 = normpdf(x, mu2, sigma2);
+plot(x, y1, 'b', 'LineWidth', 2);
+plot(x, y2, 'r', 'LineWidth', 2);
+
+% Customize the plot
+title('Normal Distribution Comparison');
+xlabel('Data');
+ylabel('Probability Density');
+legend('Data 1', 'Data 2', 'PDF 1', 'PDF 2');
+
+% Display the plot
+hold off;
